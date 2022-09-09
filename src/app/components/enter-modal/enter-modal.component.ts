@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Goal } from 'src/app/models/Goal';
@@ -15,8 +15,13 @@ import { switchMap } from 'rxjs/operators';
 
 export class EnterModalComponent implements OnInit {
   @Output() addGoalEvent: EventEmitter<any> = new EventEmitter(); 
+  @Output() getGoalsAfterAddingEvent: EventEmitter<any> = new EventEmitter(); 
+
+  @Input() goalListData: Goal[] = [];
+  
   enterForm! :FormGroup;
   goalFormData: Goal;
+  goalsList: Goal[] = [];
 
   constructor(
     private goalService :GoalService,
@@ -42,8 +47,23 @@ export class EnterModalComponent implements OnInit {
   }
 
   submit(goal :Goal) :void {    
-    this.goalService.createGoal(goal).subscribe(response => {      
+    var output = this.goalService.createGoal(goal).subscribe(response => { 
+      setTimeout(() => "1000");
+      if (response.length > 0) {
+        // this.goalsList = response;
+        this.getGoalsAfterAddingEvent.emit(response);
+        this.addGoalEvent.emit(goal);
+      }
     });
-    this.addGoalEvent.emit(goal);
   }
+
+  // setLatestID(goal :Goal): any {
+  //   let greatestID = -1;
+  //   for(var goal of this.goalListData) {
+  //     if (greatestID < goal.id) {
+  //       greatestID = goal.id
+  //     }
+  //   }
+  //   goal.id = greatestID++;
+  // }
 }

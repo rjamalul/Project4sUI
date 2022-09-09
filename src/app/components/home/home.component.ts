@@ -30,7 +30,11 @@ export class HomeComponent implements OnInit {
   }
 
   addGoalEvent(goalData: any): void {
-    this.goalsList.push(goalData)
+    // this.goalsList.push(goalData)
+  }
+
+  addGoalListEvent(goalData: any): void {
+    this.goalsList = goalData;
   }
 
   editGoal(goalData: any): void {

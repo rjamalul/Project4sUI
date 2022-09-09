@@ -7,7 +7,7 @@
     </h1>
     </div>
           
-    <app-enter-modal (addGoalEvent)="addGoalEvent($event);"></app-enter-modal>
+    <app-enter-modal (addGoalEvent)="addGoalEvent($event);" (getGoalsAfterAddingEvent)="addGoalListEvent($event)" [goalListData]="goalsList"></app-enter-modal>
     <div class="row">
         <div class="col-4" *ngFor="let goal of goalsList">
             <app-card [goalListData]="goalsList" [goalFormData]="goal" (editGoal)="editGoal($event);" (deleteGoal)="deleteGoal($event);"></app-card>        

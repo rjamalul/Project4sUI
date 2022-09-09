@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { concat, Observable } from "rxjs";
 import { environment } from 'src/environments/environment';
 import { Goal } from "../models/Goal";
 
@@ -19,10 +19,21 @@ export class GoalService {
         return this.http.get<Goal[]>(`${environment.baseUrl}${this.goalUrl}/getGoals`);
     } 
 
+    // createGoal(goal: Goal) :Observable<Goal[]> {
+    //     let dummyURL=`${environment.baseUrl}${this.goalUrl}/addGoal`;
+    //     console.log(dummyURL);
+    //     return this.http.post<Goal[]>(`${environment.baseUrl}${this.goalUrl}/addGoal`, goal);
+    // } 
+
     createGoal(goal: Goal) :Observable<Goal[]> {
         let dummyURL=`${environment.baseUrl}${this.goalUrl}/addGoal`;
-        console.log(dummyURL);
-        return this.http.post<Goal[]>(`${environment.baseUrl}${this.goalUrl}/addGoal`, goal);
+        const createGoal$ = this.http.post<Goal[]>(`${environment.baseUrl}${this.goalUrl}/addGoal`, goal);
+        const getGoals$ = this.getGoals();
+        const combined$ = concat(
+            createGoal$,
+            getGoals$
+        );
+        return combined$;
     } 
 
     public updateGoal(goal: Goal) :Observable<Goal[]> {
