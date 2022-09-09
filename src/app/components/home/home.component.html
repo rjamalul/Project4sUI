@@ -1,11 +1,16 @@
 <div class="home-wrapper">
     
     <div class="title">
-        <h1>Spyglass</h1>
+        <h1>Spyglass
+        <img src="https://www.pngpix.com/wp-content/uploads/2016/07/PNGPIX-COM-Spyglass-Telescope-PNG-Transparent-Image.png" width="100">
+
+    </h1>
     </div>
           
     <app-enter-modal (updateFindAll)="updateFindAll();"></app-enter-modal>
+    <div class="grid grid-cols-3 p-8 gap-8">
     <div *ngFor="let goal of goalsList">
         <app-card [goalListData]="goalsList" [goalFormData]="goal" (updateFindAll)="updateFindAll();"></app-card>
     </div>
+</div>
 </div>

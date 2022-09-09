@@ -26,12 +26,14 @@ import { EnterModalComponent } from './components/enter-modal/enter-modal.compon
 import { CardComponent } from './components/card/card.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     EnterModalComponent,
-    CardComponent
+    CardComponent,
+    
   ],
   imports: [
     BrowserModule,

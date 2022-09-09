@@ -1,7 +1,15 @@
 mat-form-field {
-    width: 100%;
+    width: 15%;
 }
 
 .add_title {
     buffer: 50px;
+}
+
+.title {
+    font-weight: bold;
+    color: navy;
+    width: 100%;
+    padding: 15px;
+    
 }
