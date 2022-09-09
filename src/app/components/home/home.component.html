@@ -1,0 +1,11 @@
+<div class="home-wrapper">
+    
+    <div class="title">
+        <h1>Spyglass</h1>
+    </div>
+          
+    <app-enter-modal (updateFindAll)="updateFindAll();"></app-enter-modal>
+    <div *ngFor="let goal of goalsList">
+        <app-card [goalListData]="goalsList" [goalFormData]="goal" (updateFindAll)="updateFindAll();"></app-card>
+    </div>
+</div>

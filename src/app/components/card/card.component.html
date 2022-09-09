@@ -1,0 +1,44 @@
+<mat-card style="width: 600px;">
+    <!-- *ngFor="let goal of goals" -->
+    <mat-card-header style="padding-bottom: 5px">
+        
+            <mat-card-title>{{goalFormData.goalName}}</mat-card-title>
+            <!-- {{goal.goalName}} -->
+            <mat-card-subtitle>Due: {{goalFormData.targetDate}}</mat-card-subtitle>
+        
+    </mat-card-header>
+
+    <mat-card-content>
+        <!-- src="https://material.angular.io/assets/img/examples/shiba1.jpg" -->
+        <img style
+            mat-card-lg-image
+            src="{{goalFormData.picture}}"           
+        />
+        <p>{{goalFormData.descriptionText}}</p>
+        <p *ngIf="isCurrentAmountEditable[goalFormData.id]; then isEditable else isNotEditable"></p>
+        <ng-template #isEditable>
+            <mat-form-field appearance="outline">
+                <mat-label>Current Amount</mat-label>
+                <input input type="text" name="currentAmount" matInput #input placeholder="Ex. Rent" [(ngModel)] ="goalFormData.currentAmount"> 
+            </mat-form-field>
+        </ng-template>
+        <ng-template #isNotEditable class="progress_text">
+            Progress: ${{goalFormData.currentAmount}} / ${{goalFormData.targetAmount}}
+        </ng-template>
+    </mat-card-content>
+    
+    <mat-card-footer style="padding-right: 30px">
+        <mat-card-actions align="end">
+            <div>
+                <p *ngIf="isCurrentAmountEditable[goalFormData.id]; then SaveButton else EditButton"></p>
+                <ng-template #SaveButton>
+                    <button mat-raised-button (click)="saveEdit(goalFormData)">Save</button> <!-- (click)="makeEditable(goalFormData.id)" -->
+                </ng-template>
+                <ng-template #EditButton class="progress_text">
+                    <button mat-raised-button (click)="makeEditable(goalFormData.id)">Edit Amount</button>
+                </ng-template>
+                <button mat-raised-button color="warn" (click)="delete(goalFormData.id); getGoals();">X</button>
+            </div>
+        </mat-card-actions>
+    </mat-card-footer> 
+</mat-card>
