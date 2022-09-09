@@ -16,10 +16,11 @@
                     <p>{{goalFormData.descriptionText}}</p>
                     <p *ngIf="isCurrentAmountEditable[goalFormData.id]; then isEditable else isNotEditable"></p>
                     <ng-template #isEditable>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Current Amount</mat-label>
-                            <input input type="text" name="currentAmount" matInput #input placeholder="Ex. Rent" [(ngModel)] ="goalFormData.currentAmount"/> 
+                        <span> Progress: $ </span>
+                        <mat-form-field appearance="outline" style="height: 10px; width: 70px;">
+                            <input input type="text" name="currentAmount" matInput #input placeholder="Ex. Rent" [(ngModel)] ="goalFormData.currentAmount"/>                            
                         </mat-form-field>
+                        <span> / ${{goalFormData.targetAmount}} </span>
                     </ng-template>
                     <ng-template #isNotEditable class="progress_text">
                         Progress: ${{goalFormData.currentAmount}} / ${{goalFormData.targetAmount}}
