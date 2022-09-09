@@ -28,4 +28,20 @@ export class HomeComponent implements OnInit {
   updateFindAll() {
     this.goalService.getGoals().subscribe(goals => { this.goalsList = goals as Goal[]});    
   }
+
+  addGoalEvent(goalData: any): void {
+    this.goalsList.push(goalData)
+  }
+
+  editGoal(goalData: any): void {
+    for (var goal of this.goalsList) {
+      if (goal.id == goalData.id) {
+        goal = goalData;
+      }
+    }
+  }
+
+  deleteGoal(goalId: any): void {
+    this.goalsList = this.goalsList.filter(element => element.id != goalId);
+  }
 }

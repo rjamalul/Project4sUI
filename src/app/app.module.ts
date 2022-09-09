@@ -24,6 +24,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatDialogModule} from '@angular/material/dialog';
 import { EnterModalComponent } from './components/enter-modal/enter-modal.component';
 import { CardComponent } from './components/card/card.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -55,6 +56,7 @@ import { CardComponent } from './components/card/card.component';
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

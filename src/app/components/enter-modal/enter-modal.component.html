@@ -7,40 +7,36 @@
         <form (ngSubmit)="submit(goalFormData)">
             <mat-card class ="mat-card">                
                 <!-- <input formControlName="goalName" [(ngModel)]="goalFormData.goalName" matInput #input placeholder="Ex. Rent"> -->
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" class="groupItem">
                     <mat-label>Goal Name</mat-label>
                     <input input type="text" name="goalName" matInput #input placeholder="Ex. Rent" [(ngModel)] ="goalFormData.goalName"> 
                 </mat-form-field>
 
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" class="groupItem">
                     <mat-label>Description</mat-label>
                     <input input type="text" name="descriptionText" matInput #input placeholder="Enter Description" [(ngModel)] ="goalFormData.descriptionText"> 
                 </mat-form-field>
             
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" class="groupItem">
                     <mat-label>Target Amount</mat-label>
                     <input input type="text" name="targetAmount" matInput #input placeholder="Enter Amount" [(ngModel)] ="goalFormData.targetAmount"> 
                 </mat-form-field>
             
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" class="groupItem">
                     <mat-label>Current Amount</mat-label>
                     <input input type="text" name="currentAmount" matInput #input placeholder="Enter Amount" [(ngModel)] ="goalFormData.currentAmount">
                 </mat-form-field>
             
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" class="groupItem">
                     <mat-label>image url</mat-label>
                     <input input type="text" name="picture" matInput #input placeholder="Image url" [(ngModel)] ="goalFormData.picture">
                 </mat-form-field>
             
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" class="groupItem">
                     <mat-label>Target Date</mat-label>
                     <input input type="text" name="targetDate" matInput #input placeholder="Ex. DEC 15" [(ngModel)] ="goalFormData.targetDate">
                 </mat-form-field>
                 <button mat-raised-button color="primary" class="button" type="submit"> Add Goal </button>
-                
-            <!-- <button mat-raised-button color="primary">
-                Add Goal
-            </button> -->
             </mat-card>
         </form>
     </div>

@@ -13,7 +13,8 @@ import { GoalService } from 'src/app/services/goal.service';
 export class CardComponent implements OnInit {
   @Input() goalFormData!: Goal;
   @Input() goalListData: Goal[] = [];
-  @Output() updateFindAll: EventEmitter<any> = new EventEmitter(); 
+  @Output() deleteGoal: EventEmitter<any> = new EventEmitter(); 
+  @Output() editGoal: EventEmitter<any> = new EventEmitter(); 
   isCurrentAmountEditable: any = {};
 
   constructor(private goalService: GoalService) {
@@ -27,27 +28,31 @@ export class CardComponent implements OnInit {
     console.log(this.isCurrentAmountEditable);
   }
 
-  getGoals() {
-    this.updateFindAll.emit();    
-  }
-
   makeEditable(id :any): void {
     for (let key in this.isCurrentAmountEditable) {
       if (key == id) {
         this.isCurrentAmountEditable[key] = true;
       }
     }
+  }
 
-    console.log(this.isCurrentAmountEditable);
+  makeNonEditable(id :any): void {
+    for (let key in this.isCurrentAmountEditable) {
+      if (key == id) {
+        this.isCurrentAmountEditable[key] = false;
+      }
+    }
   }
 
   saveEdit(goalFormData: Goal): void {
     this.goalService.updateGoal(goalFormData).subscribe(response => { });
-    this.getGoals();
+    this.makeNonEditable(goalFormData.id);
+    this.editGoal.emit(goalFormData);
   }
 
   delete(id :any) :void {
     id = Number(id);
     this.goalService.deleteGoal(id).subscribe(response => { });
+    this.deleteGoal.emit(id);
   }
 }

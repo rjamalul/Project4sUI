@@ -14,7 +14,7 @@ import { switchMap } from 'rxjs/operators';
 })
 
 export class EnterModalComponent implements OnInit {
-  @Output() updateFindAll: EventEmitter<any> = new EventEmitter(); 
+  @Output() addGoalEvent: EventEmitter<any> = new EventEmitter(); 
   enterForm! :FormGroup;
   goalFormData: Goal;
 
@@ -44,6 +44,6 @@ export class EnterModalComponent implements OnInit {
   submit(goal :Goal) :void {    
     this.goalService.createGoal(goal).subscribe(response => {      
     });
-    this.updateFindAll.emit();
+    this.addGoalEvent.emit(goal);
   }
 }

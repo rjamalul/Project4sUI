@@ -7,10 +7,10 @@
     </h1>
     </div>
           
-    <app-enter-modal (updateFindAll)="updateFindAll();"></app-enter-modal>
-    <div class="grid grid-cols-3 p-8 gap-8">
-    <div *ngFor="let goal of goalsList">
-        <app-card [goalListData]="goalsList" [goalFormData]="goal" (updateFindAll)="updateFindAll();"></app-card>
+    <app-enter-modal (addGoalEvent)="addGoalEvent($event);"></app-enter-modal>
+    <div class="row">
+        <div class="col-4" *ngFor="let goal of goalsList">
+            <app-card [goalListData]="goalsList" [goalFormData]="goal" (editGoal)="editGoal($event);" (deleteGoal)="deleteGoal($event);"></app-card>        
+        </div>
     </div>
-</div>
 </div>
