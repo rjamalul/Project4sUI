@@ -48,7 +48,6 @@ export class EnterModalComponent implements OnInit {
 
   submit(goal :Goal) :void {    
     var output = this.goalService.createGoal(goal).subscribe(response => { 
-      setTimeout(() => "1000");
       if (response.length > 0) {
         // this.goalsList = response;
         this.getGoalsAfterAddingEvent.emit(response);
